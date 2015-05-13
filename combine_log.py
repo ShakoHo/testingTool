@@ -6,7 +6,7 @@ from argparse import ArgumentDefaultsHelpFormatter
 
 
 class LogCombiner(object):
-    def __init__(self, **kwargs):
+    def __init__(self):
         self.arg_parser = argparse.ArgumentParser(description='Combine the log file with same keyword in file name.',
                                                   formatter_class=ArgumentDefaultsHelpFormatter)
         self.arg_parser.add_argument('-k', '--keyword', action='store', dest='file_name_keyword', default=None,
