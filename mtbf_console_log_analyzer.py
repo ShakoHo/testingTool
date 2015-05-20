@@ -59,15 +59,15 @@ class LogAnalyzer(object):
         tmp_cnt = 0
 
         print "%s Output result to stdout %s" %("=".join(["=" for i in range(30)]), "=".join(["=" for i in range(30)]))
-        print "%-45s %-7s %-5s %-8s %-7s" % ("case_name", "total", "pass", "avg_time", "failed")
+        print "%-45s %-7s %-5s %-7s %-8s" % ("case_name", "total", "pass", "failed", "avg_time")
         for case_name in self.result.keys():
             if self.result[case_name]["pass"] > 0:
                 tmp_avg_time = self.result[case_name]["case_pass_total_time"] / self.result[case_name]["pass"]
                 tmp_cnt += 1
             else:
                 tmp_avg_time = 0
-            print "%-45s %-7d %-5d %-8s %-7d" % (case_name, self.result[case_name]["total"], self.result[case_name]["pass"],
-                                                 str(tmp_avg_time) + "ms", self.result[case_name]["failed"])
+            print "%-45s %-7d %-5d %-7d %-8s" % (case_name, self.result[case_name]["total"], self.result[case_name]["pass"],
+                                                 self.result[case_name]["failed"], str(tmp_avg_time) + "ms")
             tmp_total += self.result[case_name]["total"]
             tmp_pass += self.result[case_name]["pass"]
             tmp_fail += self.result[case_name]["failed"]
@@ -78,7 +78,7 @@ class LogAnalyzer(object):
                     print "%44s %-80s %s" % ("", failed_reason, self.result[case_name]["failed_reason"][failed_reason])
                 print " ".join([" " for i in range(80)])
         print "-".join(["-" for i in range(70)])
-        print "%-45s %-7d %-5d %-8s %-7d" % ("Total", tmp_total, tmp_pass, str(tmp_total_avg_time / tmp_cnt) + "ms", tmp_fail)
+        print "%-45s %-7d %-5d %-7d %-8s" % ("Total", tmp_total, tmp_pass, tmp_fail, str(tmp_total_avg_time / tmp_cnt) + "ms")
 
     def run(self):
         self.extract_case_statistics()
